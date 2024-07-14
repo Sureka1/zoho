@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tax Invoice</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    
+    <div class="invoice">
+        <nav class="navebar">
+        <div>
+            <label for="logo-upload" class="upload-button">
+                    <img id="logo" src="upload.jpg" alt="Company Logo" style="width:40px; height:40px;">
+                </label>
+                <input type="file" id="logo-upload" accept="image/*" style="display: none;">
+                <div class="upload-text">
+                    <p> Upload Logo</p>
+                    <p>240 x 240 pixels @ 72 DPI,<br>Maximum size of 1MB.</p>
+                </div>
+        </div>
+            <h1>TAX INVOICE</h1>
+        </nav>
+        <div class="company-details">
+                <input type="text" id="companyName" name="companyName"  placeholder="Company Name"  required >
+                <input type="text" id="yourName" name="yourName" placeholder="Your Name" requried>
+                <input type="text" id="gstin" name="gstin" placeholder="Company's GSTIN" required>
+                <input type="text" id="address" name="address" placeholder="Company’s Address" required>
+                <input type="text" id="city" name="city" placeholder="City" required>
+                <select id="state" name="state" required>
+                    <option value="" disabled selected>State</option>
+                </select>
+                <select id="country" name="country" required>
+                    <option value="" disabled selected>Country</option>
+                </select>
+            </div>
+
+     <div class="invoice-header">
+        <div class="customer-details">
+            <h3>Bill To:</h3>
+                <input type="text" id="cltcompany" name="companyName" placeholder="Your Client’s Company" requried>
+                <input type="text" id="gstin" name="gstin" placeholder="Client's GSTIN" required>
+                <input type="text" id="address" name="address" placeholder="Client's Address" required>
+                <input type="text" id="city" name="city" placeholder="City" required>
+                <select id="customerState" name="customerState" required>
+                    <option value="" disabled selected>State</option>
+                </select>
+                <select id="customerCountry" name="customerCountry" required>
+                    <option value="" disabled selected>Country</option>
+                </select>
+         </div>
+
+         <div class="invoice-details">
+            <div class="invoice-row">
+                <label for="invoiceNumber">Invoice#:</label>
+                <input type="text" id="invoiceNumber" name="invoiceNumber" placeholder="INV-12">
+            </div>
+            <div class="invoice-row">
+                <label for="invoiceDate">Invoice Date:</label>
+                <input type="date" id="invoiceDate" name="invoiceDate" placeholder="Jul 13, 2024">
+            </div>
+            <div class="invoice-row">
+                <label for="dueDate">Due Date:</label>
+                <input type="date" id="dueDate" name="dueDate" placeholder="Jul 13, 2024">
+            </div>
+        </div>
+    </div>
+        
+
+    <table class="invoice-table">
+        <thead>
+            <tr>
+                <th>Item Description</th>
+                <th>HSN/SAC</th>
+                <th>Qty</th>
+                <th>Rate</th>
+                <th>SGST (%)</th>
+                <th>CGST (%)</th>
+                <th>Cess (%)</th>
+                <th>Amount</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody id="invoice-items">
+            <tr>
+                <td><input type="text" value="Brochure Design"></td>
+                <td><input type="text" value="HSN/SAC"></td>
+                <td><input type="number" value="2" onchange="calculateTotals()"></td>
+                <td><input type="number" value="100.00" step="0.01" onchange="calculateTotals()"></td>
+                <td><input type="number" value="6" step="1" onchange="calculateTotals()"></td>
+                <td><input type="number" value="6" step="1" onchange="calculateTotals()"></td>
+                <td><input type="number" value="0" step="1" onchange="calculateTotals()"></td>
+                <td><input type="text" value="200.00" readonly></td>
+                <td><button class="delete-button" onclick="deleteRow(this)">&#x1F5D1;</button></td>
+            </tr>
+        </tbody>
+    </table>
+    <button onclick="addLineItem()">Add Line Item</button>
+    <div class="total">
+        <p>Sub Total: Rs. <span id="subtotal">200.00</span></p>
+        <p>SGST (6%): Rs. <span id="sgst">12.00</span></p>
+        <p>CGST (6%): Rs. <span id="cgst">12.00</span></p>
+        <p>TOTAL: Rs. <span id="total">224.00</span></p>
+    </div>
+
+    <div class="notes">
+        <label for="notes"><strong>Notes:</strong></label>
+        <textarea id="notes" name="notes">It was great doing business with you.</textarea>
+    </div>
+    <div class="terms-conditions">
+        <label for="terms"><strong>Terms & Conditions:</strong></label>
+        <textarea id="terms" name="terms">Please make the payment by the due date.</textarea>
+    </div>
+    <p class="powered-by">Powered by Zoho Invoice</p>
+    
+    <script src="script.js"></script>
+</body>
+</html>
